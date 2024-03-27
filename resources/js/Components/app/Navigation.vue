@@ -6,7 +6,7 @@
         </Link>
         Akshayam Xerox
     </div>
-    <div class="px-3">
+    <div class="px-3"> 
         <CreateNewDropdown />
         <div class="py-3">
             <NavLink href="/">My Files</NavLink>
