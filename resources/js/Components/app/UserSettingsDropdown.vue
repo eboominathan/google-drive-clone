@@ -39,18 +39,10 @@
                         </ResponsiveNavLink>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
-                        <ResponsiveNavLink
-                        :href="route('profile.edit')"
-                            :class="[
-                                active
-                                    ? 'bg-violet-500 text-white'
-                                    : 'text-gray-900',
-                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                            ]"
-                        >
-                   
-
-                             Log Out
+                        <ResponsiveNavLink :href="route('logout')"
+                                           method="post" as="button"
+                                           :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
+                            Logout
                         </ResponsiveNavLink>
                     </MenuItem>
                 </div>
