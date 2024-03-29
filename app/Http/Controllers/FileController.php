@@ -11,13 +11,14 @@ use Inertia\Inertia;
 
 class FileController extends Controller
 {
-    public function myFiles()
+    public function myFiles(File $folder=null)
     {
+        // dd($folder);
         $folder = $this->getRoot();
         $files = File::query()
             ->where('parent_id', $folder->id)
             ->where('created_by', Auth::id())
-            ->orderBy('created_by', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate();
         $files = FileResource::collection($files);
         return Inertia::render('MyFiles', compact('files'));
