@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Traits\HasCreatorAndUpdater;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Support\Str;
 
@@ -30,14 +32,20 @@ class File extends Model
         return $this->created_by = $userId;
     }
 
+    public function owner(): Attribute
+    {
+        return Attribute::make(
+            get: function (mixed $value, array $attributes) {
+                return $attributes['created_by'] == Auth::id() ? 'me' : $this->user->name;
+            }
+        );
+    }
+    
+
     public function isRoot()
     {
         return $this->parent_id === null;
     }
-    
-
-
-
     protected static function boot()
     {
         parent::boot();
@@ -46,7 +54,8 @@ class File extends Model
             if (!$model->parent) {
                 return;
             }
-            $model->path = (!$model->parent->isRoot() ? $model->parent->path . '/' : '') . Str::slug($model->name);
+            $model->path = ( !$model->parent->isRoot() ? $model->parent->path . '/' : '' ) . Str::slug($model->name);
         });
+ 
     }
 }
