@@ -23,7 +23,7 @@ class FileResource extends JsonResource
             "parent_id" => $this->parent_id,
             "is_folder" => $this->is_folder,
             "mime" => $this->mime,
-            "size" => $this->size,
+            "size" => $this->get_file_size(),
             'owner' => $this->owner,
             'is_favourite' => !!$this->starred,
             "created_at" => $this->created_at->diffForHumans(),

@@ -2,12 +2,12 @@
     <Menu as="div" class="relative inline-block text-left">
         <div>
             <MenuButton
-                class="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+                class="inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
             >
                 {{ $page.props.auth.user.name }}
 
                 <ChevronDownIcon
-                    class="-mr-1 ml-2 h-5 w-5 text-gray-800"
+                    class="ml-2 -mr-1 h-5 w-5 text-gray-800"
                     aria-hidden="true"
                 />
             </MenuButton>
@@ -22,20 +22,13 @@
             leave-to-class="transform scale-95 opacity-0"
         >
             <MenuItems
-                class="absolute right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+                class="absolute right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
                 <div class="px-1 py-1">
                     <MenuItem v-slot="{ active }">
-                        <ResponsiveNavLink
-                        :href="route('profile.edit')"
-                            :class="[
-                                active
-                                    ? 'bg-violet-500 text-white'
-                                    : 'text-gray-900',
-                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                            ]"
-                        >
-                             Profile
+                        <ResponsiveNavLink :href="route('profile.edit')"
+                                           :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
+                            Profile
                         </ResponsiveNavLink>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
@@ -52,8 +45,25 @@
 </template>
 
 <script setup>
-import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
-import { ChevronDownIcon } from "@heroicons/vue/20/solid";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue"
- 
+// Imports
+import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
+import {ChevronDownIcon} from '@heroicons/vue/20/solid'
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+
+// Uses
+
+// Refs
+
+// Props & Emit
+
+// Computed
+
+// Methods
+
+// Hooks
+
 </script>
+
+<style scoped>
+
+</style>
