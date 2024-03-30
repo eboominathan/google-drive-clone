@@ -13,7 +13,13 @@ class FileController extends Controller
 {
     public function myFiles(File $folder=null)
     {
-        // dd($folder);
+        if($folder){
+
+            $folder = File::query()
+                        ->where('created_by',Auth::id())
+                        ->where('path',$folder);
+
+        }
         $folder = $this->getRoot();
         $files = File::query()
             ->where('parent_id', $folder->id)
